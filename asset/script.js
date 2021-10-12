@@ -25,25 +25,25 @@ $("17.description").val(localStorage.getItem("17"));
 
 function updateHour() {
     var currentHour = moment().hours();
-    $("time-block").each(function() {
-        var blockHour = parseInt($(this).attr("data-hour").split("hour")[1]);
-    if (blockHour < currentHour) {
-        $(this).addClass("past");
-        $(this).removeClass("future");
-        $(this).removeClass("present");
-    }
-    if (blockHour === currentHour) {
-        $(this).addClass("present");
-        $(this).removeClass("future");
-        $(this).removeClass("past");
-    }
-    else {
-        $(this).addClass("future");
-        $(this).removeClass("past");
-        $(this).removeClass("present");
-    }
+    $(".time-block").each(function() {
+        var blockHour = parseInt($(this).attr("id"));
+
+        if (blockHour < currentHour) {
+            $(this).addClass("past");
+            $(this).removeClass("future");
+            $(this).removeClass("present");
+            } 
+          else if (blockHour === currentHour) {
+            $(this).removeClass("past");
+            $(this).addClass("present");
+            $(this).removeClass("future");
+            } 
+           else{
+            $(this).removeClass("past");
+            $(this).removeClass("present");
+            $(this).addClass("future");
+        }
 });
-console.log(currentHour)
+
 }
 updateHour();
-console.log(updateHour)

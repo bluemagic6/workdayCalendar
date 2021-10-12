@@ -1,4 +1,4 @@
-$("#currentDay").text(moment().format("MMMM Do YYYY,"));
+$("#currentDay").text(moment().format("MMMM DD, YYYY!"));
 
 var currentTime = moment().format("LT");
 $("#currentTime").append(currentTime);
@@ -7,7 +7,7 @@ $("#currentTime").append(currentTime);
 
 $(".saveBtn").on("click", function() {
     var text = $(this).siblings(".description").val();
-    var time = $(this).parent().attr("data-hour");
+    var time = $(this).parent().attr("id");
     localStorage.setItem(time,text);
 });
 
@@ -33,15 +33,17 @@ function updateHour() {
         $(this).removeClass("present");
     }
     if (blockHour === currentHour) {
-        $(this).addClass("past");
+        $(this).addClass("present");
         $(this).removeClass("future");
+        $(this).removeClass("past");
+    }
+    else {
+        $(this).addClass("future");
+        $(this).removeClass("past");
         $(this).removeClass("present");
     }
-    else (blockHour > currentHour) {
-        $(this).addClass("past");
-        $(this).removeClass("future");
-        $(this).removeClass("present");
-    }
-    });
+});
+console.log(currentHour)
 }
 updateHour();
+console.log(updateHour)
